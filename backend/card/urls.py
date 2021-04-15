@@ -1,7 +1,12 @@
-from django.conf.urls import url 
+from django.conf.urls import url
+from django.urls.conf import include, path 
 from card import views 
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'card',views.CardViewSet)
+
 
 urlpatterns = [ 
-    url(r'^api/card$', views.card_list),
-    url(r'^api/create_card$', views.create_card),
+    path('',include(router.urls)),
 ]
